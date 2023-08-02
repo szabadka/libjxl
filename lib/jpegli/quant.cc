@@ -24,7 +24,7 @@ namespace {
 // Global scale is chosen in a way that butteraugli 3-norm matches libjpeg
 // with the same quality setting. Fitted for quality 90 on jyrki31 corpus.
 constexpr float kGlobalScaleXYB = 1.43951668f;
-constexpr float kGlobalScaleYCbCr = 1.82492511f;
+constexpr float kGlobalScaleYCbCr = 1.76964326f;
 
 static constexpr float kBaseQuantMatrixXYB[] = {
     // c = 0
@@ -518,9 +518,9 @@ static const float kZeroBiasMulYCbCrHQ[] = {
 static const float kZeroBiasOffsetYCbCrDC[] = {0.0f, 0.0f, 0.0f};
 
 static const float kZeroBiasOffsetYCbCrAC[] = {
-    0.55512f,
-    0.55464f,
-    0.57726f,
+    0.59082f,
+    0.58146f,
+    0.57988f,
 };
 
 constexpr uint8_t kTransferFunctionPQ = 16;
