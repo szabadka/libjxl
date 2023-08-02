@@ -69,7 +69,7 @@ def EvalPnorm(build_dir, corpus_dir, codec):
   (out, err) = process.communicate(input=None)
   for line in out.splitlines():
     if line.startswith(codec):
-      return float(line.split()[8])
+      return float(line.split()[9])
   raise Exception("Unexpected benchmark output:\n%sstderr:\n%s" % (out, err))
 
 
