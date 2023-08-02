@@ -24,7 +24,7 @@ namespace {
 // Global scale is chosen in a way that butteraugli 3-norm matches libjpeg
 // with the same quality setting. Fitted for quality 90 on jyrki31 corpus.
 constexpr float kGlobalScaleXYB = 1.43951668f;
-constexpr float kGlobalScaleYCbCr = 1.76964326f;
+constexpr float kGlobalScaleYCbCr = 1.82596327f;
 
 static constexpr float kBaseQuantMatrixXYB[] = {
     // c = 0
@@ -518,6 +518,12 @@ static const float kZeroBiasMulYCbCrHQ[] = {
 static const float kZeroBiasOffsetYCbCrDC[] = {0.0f, 0.0f, 0.0f};
 
 static const float kZeroBiasOffsetYCbCrAC[] = {
+    0.55512f,
+    0.55464f,
+    0.57726f,
+};
+
+static const float kZeroBiasNonAdaptiveYCbCrAC[] = {
     0.59082f,
     0.58146f,
     0.57988f,
@@ -760,7 +766,7 @@ void InitQuantizer(j_compress_ptr cinfo, QuantPass pass) {
     for (int c = 0; c < cinfo->num_components; ++c) {
       for (int k = 0; k < DCTSIZE2; ++k) {
         m->zero_bias_offset[c][k] =
-            k == 0 ? kZeroBiasOffsetYCbCrDC[c] : kZeroBiasOffsetYCbCrAC[c];
+            k == 0 ? kZeroBiasOffsetYCbCrDC[c] : kZeroBiasNonAdaptiveYCbCrAC[c];
       }
     }
   }
